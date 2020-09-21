@@ -1,4 +1,4 @@
-package mobprog.cs.ui.ac.id.supri.tugas1
+package id.ac.ui.mobprog.supri.tugas1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
