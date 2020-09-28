@@ -9,6 +9,13 @@ object RegistrationUtil {
     private lateinit var user: User
     private var users:MutableList<User> = mutableListOf<User>(adminUser)
 
+    /*
+    * return true if
+    * ... name is not empty
+    * ... phone is not empty
+    * ... address is not empty
+    * ... user is not exist before
+    * */
     fun validateRegistration(
         name: String,
         phone: String,
