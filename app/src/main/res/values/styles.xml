@@ -3,9 +3,10 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorSecondary</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/red</item>
+        <item name="colorSecondary">@color/orange</item>
+        <item name="colorOnBackground">@color/white</item>
+        <item name="colorAccent">@color/black</item>
     </style>
 
 </resources>
