@@ -5,6 +5,7 @@ import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import java.util.*
 
@@ -35,6 +36,14 @@ class MainActivity : AppCompatActivity() {
         Log.d(LOG_APP, "onRestoreInstanceState")
         miliseconds = savedInstanceState.getInt("miliseconds")
         isStopWatchRunning = savedInstanceState.getBoolean("isStopWatchRunning")
+    }
+
+    override fun onBackPressed() {
+        Toast.makeText(
+            applicationContext,
+            "Tap the 'EXIT' button to exit the app.",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
     override fun onStart() {
@@ -105,6 +114,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClickExit(view: View?) {
-        // TODO Exit Application
+        finish()
     }
 }
