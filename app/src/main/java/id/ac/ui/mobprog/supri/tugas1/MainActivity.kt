@@ -18,7 +18,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Log.d(LOG_APP, "onCreate")
+
         runTimer()
+    }
+
+    public override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        Log.d(LOG_APP, "onSaveInstanceState")
+        outState.putInt("miliseconds", miliseconds)
+        outState.putBoolean("isStopWatchRunning", isStopWatchRunning)
+    }
+
+    public override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        Log.d(LOG_APP, "onRestoreInstanceState")
+        miliseconds = savedInstanceState.getInt("miliseconds")
+        isStopWatchRunning = savedInstanceState.getBoolean("isStopWatchRunning")
     }
 
     override fun onStart() {
