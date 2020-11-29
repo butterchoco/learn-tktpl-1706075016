@@ -40,10 +40,23 @@ class WifiActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scrolling)
 
+        val service = Context.WIFI_SERVICE;
+        wifi = getSystemService(service) as WifiManager
+        val intentFilter = IntentFilter()
+        intentFilter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)
+        applicationContext.registerReceiver(wifiScanReceiver, intentFilter)
+
+        if (!wifi.isWifiEnabled) {
+            if (wifi.wifiState != WifiManager.WIFI_STATE_ENABLING)
+                    wifi.setWifiEnabled(true)
+        }
+        wifi.startScan()
+
         setSupportActionBar(findViewById(R.id.toolbar))
         findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout).title = title
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
+            wifi.startScan()
             Snackbar.make(findViewById(R.id.coordinator), "Scanning available wifi...", Snackbar.LENGTH_LONG).show()
         }
 
