@@ -1,4 +1,4 @@
-package id.ac.ui.mobprog.supri.tugas1
+package id.ac.ui.cs.mobileprogramming.ahmadsupriyanto.tugas1
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
@@ -6,14 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
-import id.ac.ui.mobprog.supri.tugas1.dummy.DummyContent.DummyItem
+import id.ac.ui.cs.mobileprogramming.ahmadsupriyanto.tugas1.model.WifiConnection.WifiConnectionItem
 
-/**
- * [RecyclerView.Adapter] that can display a [DummyItem].
- * TODO: Replace the implementation with code for your data type.
- */
 class MyWifiConnectionRecyclerViewAdapter(
-    private val values: List<DummyItem>
+    private val values: List<WifiConnectionItem>
 ) : RecyclerView.Adapter<MyWifiConnectionRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

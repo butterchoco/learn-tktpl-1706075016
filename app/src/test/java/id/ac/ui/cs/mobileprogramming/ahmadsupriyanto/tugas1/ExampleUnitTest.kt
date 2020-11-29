@@ -1,4 +1,4 @@
-package id.ac.ui.mobprog.supri.tugas1
+package id.ac.ui.cs.mobileprogramming.ahmadsupriyanto.tugas1
 
 import org.junit.Test
 
