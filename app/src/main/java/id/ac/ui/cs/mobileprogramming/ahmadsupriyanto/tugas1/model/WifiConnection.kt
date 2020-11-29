@@ -1,21 +1,22 @@
 package id.ac.ui.cs.mobileprogramming.ahmadsupriyanto.tugas1.model
 
+import android.net.wifi.ScanResult
 import java.util.ArrayList
 import java.util.HashMap
 
 object WifiConnection {
 
-    val ITEMS: MutableList<WifiConnectionItem> = ArrayList()
+    val ITEMS: MutableList<ScanResult> = ArrayList()
 
-    private fun addItem(item: WifiConnectionItem) {
+    fun addItem(item: ScanResult) {
         ITEMS.add(item)
     }
 
-    private fun createWifiConnectionItem(position: Int): WifiConnectionItem {
-        return WifiConnectionItem(position.toString(), "Item " + position)
+    fun setITEMS(list: List<ScanResult>) {
+        ITEMS.clear()
+        list.forEach { data ->
+            addItem(data)
+        }
     }
 
-    data class WifiConnectionItem(val id: String, val content: String) {
-        override fun toString(): String = content
-    }
 }

@@ -1,16 +1,40 @@
 package id.ac.ui.cs.mobileprogramming.ahmadsupriyanto.tugas1
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.net.wifi.ScanResult
+import android.net.wifi.WifiManager
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
+import androidx.fragment.app.replace
+import id.ac.ui.cs.mobileprogramming.ahmadsupriyanto.tugas1.model.WifiConnection
 
 class WifiActivity : AppCompatActivity() {
+
+    lateinit var wifi: WifiManager
+    val wifiScanReceiver = object : BroadcastReceiver() {
+      override fun onReceive(context: Context, intent: Intent) {
+          val result: List<ScanResult> = wifi.scanResults
+          val toastText = String.format("%s connection found.", result.size)
+          Toast.makeText(applicationContext, toastText, Toast.LENGTH_LONG).show()
+          WifiConnection.setITEMS(result)
+          supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                replace<WifiConnectionFragment>(R.id.fragment_container)
+            }
+      }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,8 +44,7 @@ class WifiActivity : AppCompatActivity() {
         findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout).title = title
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            Snackbar.make(view, "Scanning available wifi...", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            Snackbar.make(findViewById(R.id.coordinator), "Scanning available wifi...", Snackbar.LENGTH_LONG).show()
         }
 
         if (savedInstanceState == null) {
@@ -49,4 +72,5 @@ class WifiActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
 }

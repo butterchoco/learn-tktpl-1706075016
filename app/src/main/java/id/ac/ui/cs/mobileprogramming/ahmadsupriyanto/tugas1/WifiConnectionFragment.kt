@@ -2,7 +2,6 @@ package id.ac.ui.cs.mobileprogramming.ahmadsupriyanto.tugas1
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
@@ -11,10 +10,6 @@ import android.view.ViewGroup
 import id.ac.ui.cs.mobileprogramming.ahmadsupriyanto.tugas1.model.WifiConnection
 
 class WifiConnectionFragment : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

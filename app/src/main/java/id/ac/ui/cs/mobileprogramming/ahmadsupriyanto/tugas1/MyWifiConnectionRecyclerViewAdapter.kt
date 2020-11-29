@@ -1,15 +1,14 @@
 package id.ac.ui.cs.mobileprogramming.ahmadsupriyanto.tugas1
 
+import android.net.wifi.ScanResult
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
-import id.ac.ui.cs.mobileprogramming.ahmadsupriyanto.tugas1.model.WifiConnection.WifiConnectionItem
-
 class MyWifiConnectionRecyclerViewAdapter(
-    private val values: List<WifiConnectionItem>
+    private val values: List<ScanResult>
 ) : RecyclerView.Adapter<MyWifiConnectionRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -20,8 +19,8 @@ class MyWifiConnectionRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-        holder.idView.text = item.id
-        holder.contentView.text = item.content
+        holder.idView.text = item.timestamp.toString()
+        holder.contentView.text = item.SSID
     }
 
     override fun getItemCount(): Int = values.size
