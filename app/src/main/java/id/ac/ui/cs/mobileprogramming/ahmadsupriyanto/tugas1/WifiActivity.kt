@@ -19,6 +19,7 @@ import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import id.ac.ui.cs.mobileprogramming.ahmadsupriyanto.tugas1.model.WifiConnection
+import id.ac.ui.cs.mobileprogramming.ahmadsupriyanto.tugas1.model.WifiConnectionData
 
 class WifiActivity : AppCompatActivity() {
 
@@ -28,11 +29,12 @@ class WifiActivity : AppCompatActivity() {
           val result: List<ScanResult> = wifi.scanResults
           val toastText = String.format("%s connection found.", result.size)
           Toast.makeText(applicationContext, toastText, Toast.LENGTH_LONG).show()
+          postWifiConnection(result)
           WifiConnection.setITEMS(result)
           supportFragmentManager.commit {
                 setReorderingAllowed(true)
                 replace<WifiConnectionFragment>(R.id.fragment_container)
-            }
+        }
       }
     }
 
@@ -70,19 +72,26 @@ class WifiActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_scrolling, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-
         return when (item.itemId) {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    fun postWifiConnection(result: List<ScanResult>) {
+        val apiManager = ApiManager()
+        val wifiConnectionData = WifiConnectionData(result)
+        apiManager.addWifiConnection(wifiConnectionData) {
+            if (it["isSuccess"]!!) {
+                Toast.makeText(applicationContext, "Wifi connection uploaded", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(applicationContext, "Failed to upload wifi connection", Toast.LENGTH_LONG).show()
+            }
         }
     }
 

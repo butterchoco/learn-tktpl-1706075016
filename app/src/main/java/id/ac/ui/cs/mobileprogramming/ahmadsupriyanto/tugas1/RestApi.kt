@@ -8,6 +8,6 @@ import retrofit2.http.POST
 
 interface RestApi {
     @Headers("Content-Type: application/json")
-    @POST("users")
+    @POST("/")
     fun addWifiConnection(@Body wifiConnection: WifiConnectionData): Call<WifiConnectionData>
 }
