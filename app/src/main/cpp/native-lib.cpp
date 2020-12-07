@@ -1,13 +1,12 @@
 #include <jni.h>
 #include <string>
 
-extern "C" JNIEXPORT jstring JNICALL
-Java_id_ac_ui_cs_mobileprogramming_ahmadsupriyanto_lab6_MainActivity_stringFromJNI(
-        JNIEnv* env,
-        jobject,
-        jint isAngry) {
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_id_ac_ui_mobprog_supri_tugas1_MainActivity_stringFromJNI(JNIEnv *env, jobject thiz,
+                                                              jint is_angry) {
     std::string hello;
-    if (isAngry) {
+    if (is_angry) {
         hello = "Go Away!";
     } else {
         hello = "Come away...";
