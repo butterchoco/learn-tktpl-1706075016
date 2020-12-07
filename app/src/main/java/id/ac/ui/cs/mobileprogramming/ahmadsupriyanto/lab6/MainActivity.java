@@ -19,12 +19,13 @@ public class MainActivity extends AppCompatActivity {
 
         // Example of a call to a native method
         TextView tv = findViewById(R.id.sample_text);
-        tv.setText(stringFromJNI());
+        tv.setText(stringFromJNI(0));
     }
 
     /**
      * A native method that is implemented by the 'native-lib' native library,
      * which is packaged with this application.
+     * @param isAngry
      */
-    public native String stringFromJNI();
+    public native String stringFromJNI(int isAngry);
 }
